@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="940" viewBox="0 0 1400 940">
+  <style>
+    .title { font: bold 28px sans-serif; }
+    .actor { font: 18px sans-serif; }
+    .msg { font: 16px sans-serif; }
+    .box { fill: #eff6ff; stroke: #1d4ed8; stroke-width: 2; rx: 10; ry: 10; }
+    .line { stroke: #475569; stroke-width: 2; }
+    .arrow { stroke: #475569; stroke-width: 2; marker-end: url(#arrow); fill: none; }
+    .return { stroke: #94a3b8; stroke-width: 2; stroke-dasharray: 8 6; marker-end: url(#arrow); fill: none; }
+    .note { font: 15px sans-serif; fill: #0f172a; }
+    .note-box { fill: #f8fafc; stroke: #cbd5e1; stroke-width: 1.5; rx: 10; ry: 10; }
+  </style>
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#475569" />
+    </marker>
+  </defs>
+
+  <text x="40" y="50" class="title">Sequence diagram - read balance use case</text>
+  <rect x="70" y="90" width="180" height="50" class="box" />
+  <text x="126" y="122" class="actor">Customer</text>
+  <line x1="160" y1="140" x2="160" y2="860" class="line" stroke-dasharray="8 6" />
+  <rect x="340" y="90" width="220" height="50" class="box" />
+  <text x="383" y="122" class="actor">PointsController</text>
+  <line x1="450" y1="140" x2="450" y2="860" class="line" stroke-dasharray="8 6" />
+  <rect x="650" y="90" width="200" height="50" class="box" />
+  <text x="691" y="122" class="actor">LoyaltyService</text>
+  <line x1="750" y1="140" x2="750" y2="860" class="line" stroke-dasharray="8 6" />
+  <rect x="930" y="90" width="270" height="50" class="box" />
+  <text x="950" y="122" class="actor">InMemoryLoyaltyAccountRepository</text>
+  <line x1="1065" y1="140" x2="1065" y2="860" class="line" stroke-dasharray="8 6" />
+  <rect x="1230" y="90" width="130" height="50" class="box" />
+  <text x="1245" y="122" class="actor">Domain model</text>
+  <line x1="1295" y1="140" x2="1295" y2="860" class="line" stroke-dasharray="8 6" />
+  <path d="M160 200 L450 200" class="arrow" />
+  <text x="185" y="188" class="msg">GET /customers/{id}/points/balance</text>
+  <path d="M450 270 L750 270" class="arrow" />
+  <text x="475" y="258" class="msg">getBalance(customerId)</text>
+  <path d="M750 340 L1065 340" class="arrow" />
+  <text x="775" y="328" class="msg">findById(customerId)</text>
+  <path d="M1065 410 L750 410" class="return" />
+  <text x="775" y="398" class="msg">CustomerLoyaltyAccount or empty</text>
+  <path d="M750 480 L1295 480" class="arrow" />
+  <text x="775" y="468" class="msg">expirePoints(today) if account exists</text>
+  <path d="M750 550 L1065 550" class="arrow" />
+  <text x="775" y="538" class="msg">save(account) when found</text>
+  <path d="M1065 620 L750 620" class="return" />
+  <text x="775" y="608" class="msg">saved account</text>
+  <path d="M750 690 L450 690" class="arrow" />
+  <text x="475" y="678" class="msg">BalanceResponse or CustomerNotFoundException</text>
+  <path d="M450 760 L160 760" class="return" />
+  <text x="185" y="748" class="msg">HTTP 200 balance or HTTP 404</text>
+  <rect x="820" y="740" width="470" height="90" class="note-box" />
+  <text x="835" y="768" class="note">If the customer does not exist yet, balance returns 404.</text>
+  <text x="835" y="790" class="note">If the account exists, the response shows availablePoints and buckets.</text>
+  <text x="835" y="812" class="note">Expiration is applied before the balance is returned.</text>
+</svg>
