@@ -1,0 +1,78 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="900" viewBox="0 0 1400 900">
+  <style>
+    .title { font: bold 28px sans-serif; }
+    .actor { font: 18px sans-serif; }
+    .msg { font: 16px sans-serif; }
+    .box { fill: #eff6ff; stroke: #1d4ed8; stroke-width: 2; rx: 10; ry: 10; }
+    .line { stroke: #475569; stroke-width: 2; }
+    .arrow { stroke: #475569; stroke-width: 2; marker-end: url(#arrow); fill: none; }
+    .return { stroke: #94a3b8; stroke-width: 2; stroke-dasharray: 8 6; marker-end: url(#arrow); fill: none; }
+    .activation { fill: #dbeafe; stroke: #2563eb; stroke-width: 1; }
+  </style>
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#475569" />
+    </marker>
+  </defs>
+
+  <text x="40" y="50" class="title">Sequence diagram - spend points use case</text>
+
+  <rect x="70" y="90" width="180" height="50" class="box" />
+  <text x="120" y="122" class="actor">Customer</text>
+  <line x1="160" y1="140" x2="160" y2="820" class="line" stroke-dasharray="8 6" />
+
+  <rect x="340" y="90" width="220" height="50" class="box" />
+  <text x="385" y="122" class="actor">PointsController</text>
+  <line x1="450" y1="140" x2="450" y2="820" class="line" stroke-dasharray="8 6" />
+
+  <rect x="650" y="90" width="200" height="50" class="box" />
+  <text x="705" y="122" class="actor">LoyaltyService</text>
+  <line x1="750" y1="140" x2="750" y2="820" class="line" stroke-dasharray="8 6" />
+
+  <rect x="930" y="90" width="270" height="50" class="box" />
+  <text x="970" y="122" class="actor">InMemoryLoyaltyAccountRepository</text>
+  <line x1="1065" y1="140" x2="1065" y2="820" class="line" stroke-dasharray="8 6" />
+
+  <rect x="1230" y="90" width="130" height="50" class="box" />
+  <text x="1252" y="122" class="actor">Domain model</text>
+  <line x1="1295" y1="140" x2="1295" y2="820" class="line" stroke-dasharray="8 6" />
+
+  <rect x="442" y="180" width="16" height="480" class="activation" />
+  <rect x="742" y="220" width="16" height="420" class="activation" />
+  <rect x="1057" y="260" width="16" height="120" class="activation" />
+  <rect x="1287" y="420" width="16" height="140" class="activation" />
+  <rect x="1057" y="590" width="16" height="70" class="activation" />
+
+  <path d="M160 200 L450 200" class="arrow" />
+  <text x="210" y="188" class="msg">POST /customers/{id}/points/spend</text>
+
+  <path d="M450 240 L750 240" class="arrow" />
+  <text x="525" y="228" class="msg">spendPoints(customerId, points, spendType)</text>
+
+  <path d="M750 280 L1065 280" class="arrow" />
+  <text x="828" y="268" class="msg">findById(customerId)</text>
+
+  <path d="M1065 320 L750 320" class="return" />
+  <text x="860" y="308" class="msg">CustomerLoyaltyAccount</text>
+
+  <path d="M750 380 L1295 380" class="arrow" />
+  <text x="890" y="368" class="msg">expirePoints(today)</text>
+
+  <path d="M750 440 L1295 440" class="arrow" />
+  <text x="865" y="428" class="msg">spendPoints(actualPoints, today)</text>
+
+  <path d="M1295 500 L750 500" class="return" />
+  <text x="965" y="488" class="msg">account updated in memory</text>
+
+  <path d="M750 610 L1065 610" class="arrow" />
+  <text x="870" y="598" class="msg">save(account)</text>
+
+  <path d="M1065 650 L750 650" class="return" />
+  <text x="900" y="638" class="msg">saved account</text>
+
+  <path d="M750 700 L450 700" class="return" />
+  <text x="540" y="688" class="msg">BalanceResponse</text>
+
+  <path d="M450 760 L160 760" class="return" />
+  <text x="245" y="748" class="msg">HTTP 200 + updated balance</text>
+</svg>
